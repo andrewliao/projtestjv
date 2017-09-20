@@ -9,7 +9,8 @@ class FixedQueue implements ICharQ {
 	}
 
 	//put characer into the queue
-	public void put(char ch) {
+	public void put(char ch) 
+		throws QueueFullException {
 		if(putloc == q.length) {
 			System.out.println(" - Queue is full.");
 			return;
@@ -19,7 +20,8 @@ class FixedQueue implements ICharQ {
 	}
 
 	//get character form the queu
-	public char get() {
+	public char get() 
+		throws QueueEmptyException{
 		if(putloc == getloc) {
 			System.out.println("Queue is empty.");
 			return (char) 0;
