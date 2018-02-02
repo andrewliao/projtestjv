@@ -1,21 +1,18 @@
 package datastructure;
 
-public class PetRegistry<T extends Pet<V, K>> {
+public class PetRegistry {
 	
-	private T[] pets;
+	private Pet[] pets = new Pet[10];
 	private String[] owners = new String[10];
 	
-	public PetRegistry(T typeOfPet) {
-		this.pets = new T[10];
-	}
+
 	
-	
-	public T[] getPets() {
+	public Pet[] getPets() {
 		return pets;
 	}
 
 
-	public void setPets(T[] pets) {
+	public void setPets(Pet[] pets) {
 		this.pets = pets;
 	}
 
@@ -30,15 +27,15 @@ public class PetRegistry<T extends Pet<V, K>> {
 	}
 
 
-	public T getPet(String owner) {
+	public Pet getPet(String owner) {
 		
 	}
 	
-	public String getOwner(T pet) {
+	public String getOwner(Pet pet) {
 		
 	}
 	
-	public void addPet(String ownerName,T pet) {
+	public void addPet(String ownerName,Pet pet) {
 		
 	}
 	
@@ -48,13 +45,6 @@ public class PetRegistry<T extends Pet<V, K>> {
 	
 	
 	public static void main(String[] args) {
-		Pet<String> x = new Pet<String>("Ad", "sd");
-		System.out.println(x.getName());
-		System.out.println(x.getGender());
-		
-		Dog y = new Dog("What the hell", "sdfds");
-		System.out.println(y.getName());
-		System.out.println(y.getGender());
 		
 	}
 }

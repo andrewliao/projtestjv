@@ -4,11 +4,6 @@ public class Pet<T, K>{
 	private T name;
 	private K gender;
 	
-	public Pet(T name, K gender) {
-		this.name = name;
-		this.gender = gender;
-	}
-
 	public T getName() {
 		return name;
 	}
