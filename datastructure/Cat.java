@@ -1,7 +1,7 @@
 package datastructure;
 
-public class Cat extends Pet<String>{
-	public Cat(String name, String gender) {
+public class Cat<T, K> extends Pet<T, K>{
+	public Cat(T name, K gender) {
 		super(name, gender);
 	}
 }
