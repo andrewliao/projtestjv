@@ -1,5 +1,5 @@
 package datastructure;
 
-public class Dog<T, K> extends Pet<T, K>{
+public class Dog extends Pet{
 
 }

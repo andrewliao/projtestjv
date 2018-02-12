@@ -1,22 +1,23 @@
 package datastructure;
 
-public class Pet<T, K>{
-	private T name;
-	private K gender;
+public class Pet{
+	private String name;
+	private String gender;
 	
-	public T getName() {
+
+	public String getName() {
 		return name;
 	}
 
-	public void setName(T name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public K getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(K gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	
