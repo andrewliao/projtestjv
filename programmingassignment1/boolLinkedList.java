@@ -1,6 +1,6 @@
 package programmingassignment1;
 
-public class boolLinkedList {
+public class boolLinkedList{
 	//this holds the first boolLinkedListNode in the boolLinkedList
 	private boolLinkedListNode head;
 	//this is the default size of the boolLinkedList
@@ -11,54 +11,70 @@ public class boolLinkedList {
 		return this.size;
 	}
 	
-	//
+	//this method inserts a new node to be the ith node of the list
 	public void insert(int i, boolean value) {
-		//if this is the first element we are inserting we need to create a head
+		//if this is the first node of the boolLinkedList
 		if(size() == 0) {
 			head = new boolLinkedListNode(value);
-		} else if(size() < i + 1) { //if the sequence has fewer than i than i + 1 elements we add the new boolLinkedListNode to the end of the list
-			boolLinkedListNode temp = head.getNext();
-			for(i = 0; i < size(); i++) {
+		} else if(size() < i + 1) { //if sequence has fewer than i + 1 elements
+			boolLinkedListNode temp = head;
+			//iterate until one before the ith element of the list
+			for(int j = 0; j < size() - 1; j++) {
 				temp = temp.getNext();
 			}
 			temp.setNext(new boolLinkedListNode(value));
+			temp.getNext().setPrev(temp);
 		} else {
 			boolLinkedListNode temp = head;
-			for(int j = 0; j < i; i++) {
+			for(int j = 0; j < i - 1; j++) {
 				temp = temp.getNext();
 			}
-			if(temp.getNext() != null) {
-				temp.getNext().setPrev(new boolLinkedListNode(value));
-				temp.setNext(temp.getNext().getPrev());
+			//check if we are in the front
+			if(temp == head) {
+				boolLinkedListNode insertNode = new boolLinkedListNode(value);
+				insertNode.setNext(temp);
+				temp.setPrev(insertNode);
+				head = insertNode;
 			} else {
-				temp.setNext(new boolLinkedListNode(value));
+				boolLinkedListNode insertNode = new boolLinkedListNode(value);
+				insertNode.setNext(temp);
+				insertNode.setPrev(temp.getPrev());
+				temp.getPrev().setNext(insertNode);
+				temp.setPrev(insertNode);
 			}
 		}
 		size++;
 	}
 	
+	//this method removes the ith node of the list
 	public void remove(int i) throws Exception {
+		//if we try to remove an element that is more than the size of the linkedlist
 		if(size() < i + 1) {
 			return;
 		} else {
-			boolLinkedListNode temp = head;
-			if(i != size() - 1) {
-				for(int j = i; j < size(); j++) {
+			//if we want to remove the first element
+			if(i == 0) {
+				head = head.getNext();
+			} else {
+				boolLinkedListNode temp = head;
+				for(int j = 0; j < i - 1; j++) {
 					temp = temp.getNext();
 				}
-				temp.setNext(temp.getNext().getNext());
-				temp.getNext().setPrev(temp);
-			} else {
-				temp.setNext(null);
+				if(temp.getNext().getNext() == null) {
+					temp.setNext(null);
+				} else {
+					temp.setNext(temp.getNext().getNext());
+					temp.getNext().setPrev(temp);
+				}
 			}
-			size--;
 		}
+		size--;
 	}
 	
 	//this returns the value of the boolean stored in ith boolLinkedListNode
 	public boolean lookup(int i) throws Exception {
 		//if the i element is greater than the size of the array we must throw an exception as it is not possible to remove the element
-		if(size() < (i + 1)) {
+		if(size() < i) {
 			throw new Exception();
 		} else {
 			//this sets the starting point
@@ -81,9 +97,12 @@ public class boolLinkedList {
 			//we must iterate through the entire boolLinkedList and flip the value of the boolean
 			boolLinkedListNode temp = head;
 			for(int i = 0; i < size(); i++) {
-				temp = temp.getNext();
 				temp.setValue(!temp.getValue());
+				temp = temp.getNext();
 			}
 		}
 	}
+	
+
+	
 }

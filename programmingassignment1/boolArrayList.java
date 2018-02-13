@@ -17,25 +17,24 @@ public class boolArrayList {
 		 *  greater than the last element of the array or if 
 		 *  we are inserting at the last element of a full array
 		 */
-		if(size() == list.length || i > list.length - 1) {
+		if(size() == list.length) {
 			boolean[] temp = new boolean[list.length * 2];
 			for(int j = 0; j < size(); j++) {
 				temp[j] = list[i];
 			}
 			list = temp;
 		}
-		// if the size of the sequence than i + 1 elements, we insert it at the last element in the sequence
-		if(size() < i + 1) {
-			list[size] = value;
+		//if we are inserting at an index greater than the size of the array
+		if(size() < i + 1) { 
+			list[i] = value;
 		} else {
-			//we shift everything to the right by one index from the point we insert the new boolean at index i
-			boolean temp = list[i];
-			for(int j = i; i < size(); i++) {
+			//we iterate from index i to the end of the filled array and shift the elements to the right
+			for(int j = i; j < size(); j++) {
 				list[j + 1] = list[j];
 			}
-			list[i] = temp;
+			list[i] = value;
 		}
-		//we increment the size of the boolArrayList by one
+		//we increment the array by a size of 1
 		size++;
 	}
 	
@@ -46,13 +45,18 @@ public class boolArrayList {
 			return;
 		} else {
 			//we to shift all elements back one index from the point where we removed the element
-			if(i != size() - 1) {
-				for(int j = i; j < size(); j++) {
-					list[j] = list[j + 1];
-				}
-			} else {
+			if(i == size()) {
 				//this is the case when we are removing the last element of the array
 				list[i] = false;
+			} else {
+				for(int j = i; j < size(); j++) {
+					if(j + 1 < size()) {
+						list[j] = list[j + 1];
+					} else {
+						//if we need an element at an index after the array
+						list[j] = false;
+					}
+				}
 			}
 			//after this we decrement the size of the boolArrayList by one
 			size--;
@@ -61,10 +65,10 @@ public class boolArrayList {
 	
 	//this method looks up the boolean at index i
 	public boolean lookup(int i) throws Exception {
-		if(size() < (i + 1)) {
+		if(size() < i + 1) {
 			throw new Exception();
 		} else {
-			return list[i + 1];
+			return list[i];
 		}
 	}
 	
