@@ -1,6 +1,8 @@
 package programmingassignment1;
 
-public class boolLinkedList{
+import java.util.Iterator;
+
+public class boolLinkedList {
 	//this holds the first boolLinkedListNode in the boolLinkedList
 	private boolLinkedListNode head;
 	//this is the default size of the boolLinkedList
@@ -102,6 +104,7 @@ public class boolLinkedList{
 			}
 		}
 	}
+
 	
 
 	

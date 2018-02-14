@@ -1,5 +1,7 @@
 package programmingassignment1;
 
+import java.util.Iterator;
+
 public class boolArrayList {
 	//this stores the default boolean array which can hold 10 elements
 	private boolean[] list = new boolean[10];
@@ -26,7 +28,7 @@ public class boolArrayList {
 		}
 		//if we are inserting at an index greater than the size of the array
 		if(size() < i + 1) { 
-			list[i] = value;
+			list[size()] = value;
 		} else {
 			//we iterate from index i to the end of the filled array and shift the elements to the right
 			for(int j = i; j < size(); j++) {
@@ -64,7 +66,7 @@ public class boolArrayList {
 	}
 	
 	//this method looks up the boolean at index i
-	public boolean lookup(int i) throws Exception {
+	public Boolean lookup(int i) throws Exception {
 		if(size() < i + 1) {
 			throw new Exception();
 		} else {
@@ -82,4 +84,6 @@ public class boolArrayList {
 			}
 		}
 	}
+
+	
 }

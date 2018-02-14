@@ -7,50 +7,30 @@ public class TreeNode {
 	public TreeNode(int data) {
 		this.data = data;
 	}
-	
-	public void insert(int value) {
-		if(value <= data) {
-			if(left == null) {
-				left = new TreeNode(value);
-			} else {
-				left.insert(value);
-			}
-		} else {
-			if (right == null) {
-				right = new TreeNode(value);
-			} else {
-				right.insert(value);
-			}
-		}
+
+	public int getData() {
+		return data;
+	}
+
+	public void setData(int data) {
+		this.data = data;
+	}
+
+	public TreeNode getLeft() {
+		return left;
+	}
+
+	public void setLeft(TreeNode left) {
+		this.left = left;
+	}
+
+	public TreeNode getRight() {
+		return right;
+	}
+
+	public void setRight(TreeNode right) {
+		this.right = right;
 	}
 	
-	public boolean contains(int value) {
-		if(value == data) {
-			return true;
-		} else {
-			if (value < data) {
-				if(left == null) {
-					return false;
-				} else {
-					return left.contains(value);
-				}
-			} else {
-				if (right == null) {
-					return false;
-				} else {
-					return right.contains(value);
-				}
-			}
-		}
-	}
 	
-	public void printInOrder() {
-		if (left != null) {
-			left.printInOrder();
-		} 
-		System.out.println(this.data);
-		if(right != null) {
-			right.printInOrder();
-		}
-	}
 }
