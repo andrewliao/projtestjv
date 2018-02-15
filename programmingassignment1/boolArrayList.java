@@ -2,7 +2,7 @@ package programmingassignment1;
 
 import java.util.Iterator;
 
-public class boolArrayList {
+public class boolArrayList implements boolList{
 	//this stores the default boolean array which can hold 10 elements
 	private boolean[] list = new boolean[10];
 	//the array starts with a size of 0
@@ -29,7 +29,15 @@ public class boolArrayList {
 		//if we are inserting at an index greater than the size of the array
 		if(size() < i + 1) { 
 			list[size()] = value;
-		} else {
+		} else if(i == 0) {
+			boolean[] temp = new boolean[list.length];
+			for(int j = 1; j < size() + 1; j ++) {
+				temp[j] = list[j - 1];
+			}
+			temp[0] = value;
+			list = temp;
+		}
+		else {
 			//we iterate from index i to the end of the filled array and shift the elements to the right
 			for(int j = i; j < size(); j++) {
 				list[j + 1] = list[j];
@@ -66,18 +74,18 @@ public class boolArrayList {
 	}
 	
 	//this method looks up the boolean at index i
-	public Boolean lookup(int i) throws Exception {
+	public boolean lookup(int i) throws IndexOutOfBoundsException {
 		if(size() < i + 1) {
-			throw new Exception();
+			throw new IndexOutOfBoundsException();
 		} else {
 			return list[i];
 		}
 	}
 	
 	//this method will flip the values of the booleans elements in the boolArrayList
-	public void negateAll() throws Exception {
+	public void negateAll() throws IllegalArgumentException {
 		if(size() == 0) {
-			throw new Exception();
+			throw new IllegalArgumentException();
 		} else {
 			for(int i = 0; i < size(); i++) {
 				list[i] = !list[i];

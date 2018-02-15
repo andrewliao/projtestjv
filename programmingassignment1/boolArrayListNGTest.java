@@ -1,15 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package programmingassignment1;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+import static org.testng.Assert.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author Rich
  */
-public class boolArrayListTest {
+public class boolArrayListNGTest {
     
     /*
      *  Set up a few Objects for use in test fixture
@@ -19,16 +26,46 @@ public class boolArrayListTest {
     /*
     *  Initialize input sequences:
     */
-    Boolean[] seq0  = new Boolean[] {false, false, true, false};; 
-    Boolean[] seq1 = new Boolean[] {false, true, true, false}; ;
-    Boolean[] seq2 =  new Boolean[] {true, true, true, false};
-    Boolean[] seq3 = new Boolean[] {true, false, true, false};;
+    Boolean[] seq0; 
+    Boolean[] seq1;
+    Boolean[] seq2;
+    Boolean[] seq3;
     
-   
-       
+    public boolArrayListNGTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
         
- 
-       
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @BeforeMethod
+    public void setUpMethod() throws Exception {
+        /*
+         *  Set up test fixture...
+         */
+        
+        /*
+         *  Initialize input sequences:
+         *      seq0 = (0010)_2 = (2)_10
+         *      seq1 = (0110)_2 = (6)_10
+         *      seq2 = (1110)_2 = (-2)_10
+         *      seq3 = (1010)_2 = (-6)_10
+         */
+        seq0 = new Boolean[] {false, false, true, false};
+        seq1 = new Boolean[] {false, true, true, false}; 
+        seq2 = new Boolean[] {true, true, true, false};
+        seq3 = new Boolean[] {true, false, true, false};
+    }
+
+    @AfterMethod
+    public void tearDownMethod() throws Exception {
+    }
+
     /**
      * Test of size method, of class boolArrayList.
      */
@@ -68,6 +105,8 @@ public class boolArrayListTest {
         System.out.println("insert");
         boolArrayList instance0 = new boolArrayList();
         boolArrayList instance1 = new boolArrayList();
+        //boolArrayList instance0 = new boolArrayList(10);
+        //boolArrayList instance1 = new boolArrayList(10);
         
         /*
          *  Add some elements to instance
@@ -173,10 +212,16 @@ public class boolArrayListTest {
     @Test
     public void testRemove() throws Exception {
         System.out.println("remove");
+        
         boolArrayList instance0 = new boolArrayList();
         boolArrayList instance1 = new boolArrayList();
         boolArrayList instance2 = new boolArrayList();
         boolArrayList instance3 = new boolArrayList();
+
+        //boolArrayList instance0 = new boolArrayList(10);
+        //boolArrayList instance1 = new boolArrayList(10);
+        //boolArrayList instance2 = new boolArrayList(10);
+        //boolArrayList instance3 = new boolArrayList(10);
         
         /*
          *  Add some elements to instances
@@ -208,7 +253,7 @@ public class boolArrayListTest {
          */
         boolean expResult;
         boolean result;
-        for (int i = 0; i < nBits - 1; i++) {
+        for (int i = 0; i < nBits - 2; i++) {
             result = (boolean) instance0.lookup(i);
             expResult = seq0[i+1];
             assertEquals(result, expResult);
@@ -303,56 +348,54 @@ public class boolArrayListTest {
      * (though I should have specified one...).  This is just for style points.
      */
     //@Test(expected = IndexOutOfBoundsException.class)
-    @Test
-    public void testRemoveException() throws Exception {
-        System.out.println("remove exception");
-        boolArrayList instance = new boolArrayList();
+    //@Test
+    //public void testRemoveException() throws Exception {
+    //    System.out.println("remove exception");
+    //    boolArrayList instance = new boolArrayList();
         //boolArrayList instance = new boolArrayList(10);
         
         /* 
          * Try removing elements from an empty list...
          */
-        int toRemove = 0;
-        boolean result;
-       
-        try {
-        		
-            result = true;
-            
-        } catch (Exception e) {
+    //    int toRemove = 0;
+        
+    //    boolean result;
+    //    try {
+    //        instance.remove(toRemove);
+    //        result = false;
+    //    } catch (IndexOutOfBoundsException e) {
             //  Not going to test message or the like...
-        	 
-            result = true;
-        }
-        assertTrue(result);
+    //        result = true;
+    //    }
+    //    assertTrue(result);
         
         /*
          *  Add some elements to instances
          */
-        for (int i = 0; i < nBits; i++) {
-            instance.insert(i, seq0[i]);
-        }
+    //    for (int i = 0; i < nBits; i++) {
+    //        instance.insert(i, seq0[i]);
+    //    }
         
         /*
          *  Add some elements to instances
          */
-        for (int i = 0; i < nBits; i++) {
-            instance.insert(i, seq0[i]);;
-        }
+    //    for (int i = 0; i < nBits; i++) {
+    //        instance.insert(i, seq0[i]);;
+    //    }
         
         /* 
          * Try removing elements a nonexistent element from the list...
          */
-        toRemove = -1;
+    //    toRemove = -1;
         
-        try {
-            instance.remove(toRemove);
-            result = false;
-        } catch (IndexOutOfBoundsException e) {
+    //    try {
+    //        instance.remove(toRemove);
+    //        result = true;
+    //    } catch (IndexOutOfBoundsException e) {
             //  Not going to test message or the like...
-            result = true;
-        }
-        assertTrue(result);
+    //        result = false;
+    //    }
+    //    assertTrue(result);
         
         /*
          * Try removing an (actual) element then removing an element that
@@ -360,19 +403,19 @@ public class boolArrayListTest {
          * kth to the (k-1)th entry as the overall length of the array has been 
          * decremented.
          */
-        toRemove = 2;                 // Remove arbitrary entry
-        instance.remove(toRemove);
+    //    toRemove = 2;                 // Remove arbitrary entry
+    //    instance.remove(toRemove);
         
-        toRemove = nBits - 1;         // Remove entry at original end of array
-        try {
-            instance.remove(toRemove);
-            result = true;
-        } catch (IndexOutOfBoundsException e) {
+    //    toRemove = nBits - 1;         // Remove entry at original end of array
+    //    try {
+    //        instance.remove(toRemove);
+    //        result = false;
+    //    } catch (IndexOutOfBoundsException e) {
             //  Not going to test message or the like...
-            result = true;
-        }
-        assertTrue(result);
-    }
+    //        result = true;
+    //    }
+    //    assertTrue(result);
+    //}
 
     /**
      * Test of lookup method, of class boolArrayList.
@@ -427,7 +470,7 @@ public class boolArrayListTest {
         try {
             instance.lookup(toLookup);
             result = false;
-        } catch (Exception e) {
+        } catch (IndexOutOfBoundsException e) {
             //  Not going to test message or the like...
             result = true;
         }
@@ -457,7 +500,7 @@ public class boolArrayListTest {
         try {
             instance.lookup(toLookup);
             result = false;
-        } catch (Exception e) {
+        } catch (IndexOutOfBoundsException e) {
             //  Not going to test message or the like...
             result = true;
         }
@@ -483,7 +526,17 @@ public class boolArrayListTest {
         /*
          *  Negate elements
          */
+        boolean expFlagResult;
+        boolean flagResult;
+        expFlagResult = true;
+        //flagResult = instance.negateAll();
         instance.negateAll();
+        
+        
+        /*
+         *  Test output
+         */
+        //assertEquals(flagResult,expFlagResult);
         
         /*
          *  Query individual elements
@@ -514,6 +567,7 @@ public class boolArrayListTest {
     public void testNegateAllException() throws Exception {
         System.out.println("negateAll exception");
         boolArrayList instance = new boolArrayList();
+        //boolArrayList instance = new boolArrayList(10);
         
         /* 
          * Try negating elements from an empty list...
@@ -525,7 +579,7 @@ public class boolArrayListTest {
             instance.negateAll();
             //result = !flagResult;
             result = false;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             //  Not going to test message or the like...
             result = true;
         }

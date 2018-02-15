@@ -2,7 +2,7 @@ package programmingassignment1;
 
 import java.util.Iterator;
 
-public class boolLinkedList {
+public class boolLinkedList implements boolList{
 	//this holds the first boolLinkedListNode in the boolLinkedList
 	private boolLinkedListNode head;
 	//this is the default size of the boolLinkedList
@@ -14,11 +14,16 @@ public class boolLinkedList {
 	}
 	
 	//this method inserts a new node to be the ith node of the list
-	public void insert(int i, boolean value) {
+	public void insert(int i, boolean value) throws IndexOutOfBoundsException {
+		//if we try to insert at a negative number
+		if(i < 0) {
+			throw new IndexOutOfBoundsException();
+		}
 		//if this is the first node of the boolLinkedList
 		if(size() == 0) {
 			head = new boolLinkedListNode(value);
-		} else if(size() < i + 1) { //if sequence has fewer than i + 1 elements
+		}
+		else if(size() < i + 1) { //if sequence has fewer than i + 1 elements
 			boolLinkedListNode temp = head;
 			//iterate until one before the ith element of the list
 			for(int j = 0; j < size() - 1; j++) {
@@ -26,7 +31,8 @@ public class boolLinkedList {
 			}
 			temp.setNext(new boolLinkedListNode(value));
 			temp.getNext().setPrev(temp);
-		} else {
+		} 
+		else {
 			boolLinkedListNode temp = head;
 			for(int j = 0; j < i - 1; j++) {
 				temp = temp.getNext();
@@ -49,9 +55,9 @@ public class boolLinkedList {
 	}
 	
 	//this method removes the ith node of the list
-	public void remove(int i) throws Exception {
-		//if we try to remove an element that is more than the size of the linkedlist
-		if(size() < i + 1) {
+	public void remove(int i) {
+		//if we try to remove an element that is more than the size of the linkedlist or if the number a negative index
+		if(size() < i + 1 || i < 0) {
 			return;
 		} else {
 			//if we want to remove the first element
@@ -74,10 +80,10 @@ public class boolLinkedList {
 	}
 	
 	//this returns the value of the boolean stored in ith boolLinkedListNode
-	public boolean lookup(int i) throws Exception {
+	public boolean lookup(int i) throws IndexOutOfBoundsException {
 		//if the i element is greater than the size of the array we must throw an exception as it is not possible to remove the element
-		if(size() < i) {
-			throw new Exception();
+		if(size() <= i || i < 0) {
+			throw new IndexOutOfBoundsException();
 		} else {
 			//this sets the starting point
 			boolLinkedListNode temp = head;
@@ -91,10 +97,10 @@ public class boolLinkedList {
 	}
 	
 	//this reverses the value boolean elements of the boolLinkedListNodes in the boolLinkedList 
-	public void negateAll() throws Exception {
+	public void negateAll() throws IllegalArgumentException {
 		//we check to make sure that there is at least one boolLinkedListNode in the boolLinkedList
 		if(size() == 0) {
-			throw new Exception();
+			throw new IllegalArgumentException();
 		} else {
 			//we must iterate through the entire boolLinkedList and flip the value of the boolean
 			boolLinkedListNode temp = head;
