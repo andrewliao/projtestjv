@@ -1,19 +1,27 @@
 package datastructure;
 
-public class LLNode<T> {
-	private T element;
-	private LLNode<T> next;
+public class LLNode {
+	private int value;
+	public LLNode next;
 	
-	public T getElement() {
-		return element;
+	public LLNode(int v, LLNode nextNode) {
+		value = v;
+		next = nextNode;
 	}
-	public void setElement(T element) {
-		this.element = element;
+
+	public int getValue() {
+		return value;
 	}
-	public LLNode<T> getNext() {
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public LLNode getNext() {
 		return next;
 	}
-	public void setNext(LLNode<T> next) {
+
+	public void setNext(LLNode next) {
 		this.next = next;
 	}
 	

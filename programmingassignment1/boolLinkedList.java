@@ -1,6 +1,5 @@
 package programmingassignment1;
 
-import java.util.Iterator;
 
 public class boolLinkedList implements boolList{
 	//this holds the first boolLinkedListNode in the boolLinkedList
@@ -9,11 +8,13 @@ public class boolLinkedList implements boolList{
 	private int size = 0;
 	
 	//this returns the size of the boolLinkedList
+	//its worst running time is 0(1)
 	public int size() {
 		return this.size;
 	}
 	
 	//this method inserts a new node to be the ith node of the list
+	//its worst running time is O(n)
 	public void insert(int i, boolean value) throws IndexOutOfBoundsException {
 		//if we try to insert at a negative number
 		if(i < 0) {
@@ -29,21 +30,24 @@ public class boolLinkedList implements boolList{
 			for(int j = 0; j < size() - 1; j++) {
 				temp = temp.getNext();
 			}
+			//need to set the next and the previous node for the new inserted node
 			temp.setNext(new boolLinkedListNode(value));
 			temp.getNext().setPrev(temp);
 		} 
 		else {
+			//need to iterate and find the starting point for our new node
 			boolLinkedListNode temp = head;
 			for(int j = 0; j < i - 1; j++) {
 				temp = temp.getNext();
 			}
-			//check if we are in the front
+			//check if we are in the front and if it is we set the new node as the head
 			if(temp == head) {
 				boolLinkedListNode insertNode = new boolLinkedListNode(value);
 				insertNode.setNext(temp);
 				temp.setPrev(insertNode);
 				head = insertNode;
 			} else {
+				//we just set make sure that our 
 				boolLinkedListNode insertNode = new boolLinkedListNode(value);
 				insertNode.setNext(temp);
 				insertNode.setPrev(temp.getPrev());
@@ -51,6 +55,7 @@ public class boolLinkedList implements boolList{
 				temp.setPrev(insertNode);
 			}
 		}
+		//we increment the size by one 
 		size++;
 	}
 	
@@ -64,22 +69,27 @@ public class boolLinkedList implements boolList{
 			if(i == 0) {
 				head = head.getNext();
 			} else {
+				//we nned to find which node to remove
 				boolLinkedListNode temp = head;
 				for(int j = 0; j < i - 1; j++) {
 					temp = temp.getNext();
 				}
+				//we need to check if the remove node has a next node or not
 				if(temp.getNext().getNext() == null) {
 					temp.setNext(null);
 				} else {
+					//if it does have one we want to set our temp to be the deleted nodes next node
 					temp.setNext(temp.getNext().getNext());
 					temp.getNext().setPrev(temp);
 				}
 			}
 		}
+		//decrement the size by one
 		size--;
 	}
 	
 	//this returns the value of the boolean stored in ith boolLinkedListNode
+	//the worst running time is O(n)
 	public boolean lookup(int i) throws IndexOutOfBoundsException {
 		//if the i element is greater than the size of the array we must throw an exception as it is not possible to remove the element
 		if(size() <= i || i < 0) {
@@ -96,7 +106,8 @@ public class boolLinkedList implements boolList{
 		}
 	}
 	
-	//this reverses the value boolean elements of the boolLinkedListNodes in the boolLinkedList 
+	//this reverses the value boolean elements of the boolLinkedListNodes in the boolLinkedList
+	//the worst running time is O(n)
 	public void negateAll() throws IllegalArgumentException {
 		//we check to make sure that there is at least one boolLinkedListNode in the boolLinkedList
 		if(size() == 0) {
